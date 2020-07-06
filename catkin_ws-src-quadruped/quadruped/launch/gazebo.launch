@@ -1,0 +1,44 @@
+<launch>
+  <!-- roslaunch arguments -->
+  <arg name="paused" default="true"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="show_rviz" default="false"/>
+
+  <!-- Robot pose                    z = 0.58 -->
+  <arg name="x" default="0"/>
+  <arg name="y" default="0"/>
+  <arg name="z" default="1.3"/>
+  <arg name="roll" default="1.5708"/>
+  <arg name="pitch" default="0"/>
+  <arg name="yaw" default="0"/>
+
+  <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find quadruped)/worlds/pig_dog.1.world"/>
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="paused" value="$(arg paused)"/>
+    <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    <arg name="headless" value="$(arg headless)"/>
+  </include>
+
+  <!-- push robot_description to factory and spawn robot in gazebo -->
+  <param name="robot_description" textfile='$(find quadruped)/robots/quadruped.urdf' />
+  <node name="quadruped_spawn" pkg="gazebo_ros" type="spawn_model" output="screen" 
+    args="-urdf -param robot_description -model quadruped -x $(arg x) -y $(arg y) -z $(arg z)
+              -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)" />
+
+  <!-- ros_control quadruped launch file -->
+  <include file="$(find quadruped_controller)/launch/quadruped_controller.launch" />
+
+  <node name="pos_pub_node" pkg="quadruped_controller" type="pos_pub.py" respawn="true"/>
+
+<!-- #####################robot visualization in Rviz############################### -->
+  <group if="$(arg show_rviz)">
+    <node name="rviz" pkg="rviz" type="rviz" output="screen"/> 
+  </group>
+
+</launch>

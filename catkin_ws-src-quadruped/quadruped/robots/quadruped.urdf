@@ -1,0 +1,1173 @@
+<?xml version="1.0"?>
+<robot
+  name="quadruped">
+  <link
+    name="base">
+    <inertial>
+      <origin
+        xyz="1.38777878078145E-17 -0.0740143074166761 1.11022302462516E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.4" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/base.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/base.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="center_of_mass">
+    <inertial>
+      <origin
+        xyz="1.38777878078145E-17 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="5" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/center_of_mass.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/center_of_mass.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="center_of_mass"
+    type="fixed">
+    <origin
+      xyz="0 0 0"
+      rpy="7.7037E-34 0.022534 -1.8128E-16" />
+    <parent
+      link="base" />
+    <child
+      link="center_of_mass" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="LF_HIP">
+    <inertial>
+      <origin
+        xyz="5.55111512312578E-17 -0.00603191577528073 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.413475328046838" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LF_HIP.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LF_HIP.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LF_HAA"
+    type="revolute">
+    <origin
+      xyz="0.3 -0.10502 -0.15"
+      rpy="2.7756E-16 -5.8981E-17 -1.8128E-16" />
+    <parent
+      link="base" />
+    <child
+      link="LF_HIP" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="80"
+      velocity="7" />
+  </joint>
+  <link
+    name="LF_SHANK">
+    <inertial>
+      <origin
+        xyz="-6.93889390390723E-17 -0.0664457851504855 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.791190416472512" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LF_SHANK.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LF_SHANK.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LF_HFE"
+    type="revolute">
+    <origin
+      xyz="0.0024886 -0.080667 0"
+      rpy="-2.5153E-16 -1.2143E-16 -0.5236" />
+    <parent
+      link="LF_HIP" />
+    <child
+      link="LF_SHANK" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="80"
+      velocity="7" />
+  </joint>
+  <link
+    name="LF_KNEE">
+    <inertial>
+      <origin
+        xyz="0.0283889333015588 2.25673227272072E-07 -2.79728842866867E-08"
+        rpy="0 0 0" />
+      <mass
+        value="0.517428787817436" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LF_KNEE.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LF_KNEE.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LF_KFE"
+    type="revolute">
+    <origin
+      xyz="-0.0014584 -0.25498 0"
+      rpy="0 0 1.61E-17" />
+    <parent
+      link="LF_SHANK" />
+    <child
+      link="LF_KNEE" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="80"
+      velocity="7" />
+  </joint>
+  <link
+    name="LF_FOOT">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.0654498469497874" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LF_FOOT.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LF_FOOT.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LF_FOOT"
+    type="fixed">
+    <origin
+      xyz="0.22646 0 0"
+      rpy="0 0 1.61E-17" />
+    <parent
+      link="LF_KNEE" />
+    <child
+      link="LF_FOOT" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="RF_HIP">
+    <inertial>
+      <origin
+        xyz="5.55111512312578E-17 -0.00603191577528073 1.11022302462516E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.413475328046837" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RF_HIP.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RF_HIP.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RF_HAA"
+    type="revolute">
+    <origin
+      xyz="0.3 -0.10502 0.15"
+      rpy="2.3592E-16 -6.9389E-17 -1.8128E-16" />
+    <parent
+      link="base" />
+    <child
+      link="RF_HIP" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="80"
+      velocity="7" />
+  </joint>
+  <link
+    name="RF_SHANK">
+    <inertial>
+      <origin
+        xyz="-1.38777878078145E-17 -0.0664457851504854 -1.11022302462516E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.791190416472513" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RF_SHANK.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RF_SHANK.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RF_HFE"
+    type="revolute">
+    <origin
+      xyz="0.0024886 -0.080667 0"
+      rpy="-2.6888E-16 -6.9389E-18 -0.5236" />
+    <parent
+      link="RF_HIP" />
+    <child
+      link="RF_SHANK" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="80"
+      velocity="7" />
+  </joint>
+  <link
+    name="RF_KNEE">
+    <inertial>
+      <origin
+        xyz="0.0283889333015588 2.2567322716105E-07 -2.79728843421978E-08"
+        rpy="0 0 0" />
+      <mass
+        value="0.517428787817436" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RF_KNEE.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RF_KNEE.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RF_KFE"
+    type="revolute">
+    <origin
+      xyz="-0.0014584 -0.25498 0"
+      rpy="0 -3.4694E-18 1.4122E-17" />
+    <parent
+      link="RF_SHANK" />
+    <child
+      link="RF_KNEE" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="80"
+      velocity="7" />
+  </joint>
+  <link
+    name="RF_FOOT">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.0654498469497874" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RF_FOOT.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RF_FOOT.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RF_FOOT"
+    type="fixed">
+    <origin
+      xyz="0.22646 0 0"
+      rpy="0 -3.4694E-18 1.4122E-17" />
+    <parent
+      link="RF_KNEE" />
+    <child
+      link="RF_FOOT" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="RH_HIP">
+    <inertial>
+      <origin
+        xyz="-5.55111512312578E-17 -0.00603191577528073 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.413475328046837" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RH_HIP.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RH_HIP.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RH_HAA"
+    type="revolute">
+    <origin
+      xyz="-0.3 -0.10502 0.15"
+      rpy="3.6776E-16 -6.5919E-17 -1.8128E-16" />
+    <parent
+      link="base" />
+    <child
+      link="RH_HIP" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="80"
+      velocity="7" />
+  </joint>
+  <link
+    name="RH_SHANK">
+    <inertial>
+      <origin
+        xyz="5.55111512312578E-17 -0.0664457851504854 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.791190416472513" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RH_SHANK.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RH_SHANK.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RH_HFE"
+    type="revolute">
+    <origin
+      xyz="0.0024886 -0.080667 0"
+      rpy="-5.4991E-16 2.1164E-16 -0.5236" />
+    <parent
+      link="RH_HIP" />
+    <child
+      link="RH_SHANK" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="80"
+      velocity="7" />
+  </joint>
+  <link
+    name="RH_KNEE">
+    <inertial>
+      <origin
+        xyz="0.0283889333015588 2.25673227202683E-07 -2.79728842311755E-08"
+        rpy="0 0 0" />
+      <mass
+        value="0.517428787817437" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RH_KNEE.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RH_KNEE.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RH_KFE"
+    type="revolute">
+    <origin
+      xyz="-0.0014584 -0.25498 0"
+      rpy="3.8858E-16 -3.4694E-18 7.5894E-18" />
+    <parent
+      link="RH_SHANK" />
+    <child
+      link="RH_KNEE" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="80"
+      velocity="7" />
+  </joint>
+  <link
+    name="RH_FOOT">
+    <inertial>
+      <origin
+        xyz="5.55111512312578E-17 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0.0654498469497874" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RH_FOOT.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/RH_FOOT.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="RH_FOOT"
+    type="fixed">
+    <origin
+      xyz="0.22646 0 0"
+      rpy="-3.8511E-16 -3.4694E-18 1.5125E-17" />
+    <parent
+      link="RH_KNEE" />
+    <child
+      link="RH_FOOT" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="LH_HIP">
+    <inertial>
+      <origin
+        xyz="-2.77555756156289E-17 -0.00603191577528073 -5.55111512312578E-17"
+        rpy="0 0 0" />
+      <mass
+        value="0.413475328046838" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LH_HIP.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LH_HIP.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LH_HAA"
+    type="revolute">
+    <origin
+      xyz="-0.3 -0.10502 -0.15"
+      rpy="1.8041E-16 -4.8572E-17 -1.8128E-16" />
+    <parent
+      link="base" />
+    <child
+      link="LH_HIP" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="80"
+      velocity="7" />
+  </joint>
+  <link
+    name="LH_SHANK">
+    <inertial>
+      <origin
+        xyz="0 -0.0664457851504854 -1.11022302462516E-16"
+        rpy="0 0 0" />
+      <mass
+        value="0.791190416472512" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LH_SHANK.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LH_SHANK.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LH_HFE"
+    type="revolute">
+    <origin
+      xyz="0.0024886 -0.080667 0"
+      rpy="-2.0123E-16 -1.3878E-17 -0.5236" />
+    <parent
+      link="LH_HIP" />
+    <child
+      link="LH_SHANK" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="80"
+      velocity="7" />
+  </joint>
+  <link
+    name="LH_KNEE">
+    <inertial>
+      <origin
+        xyz="0.0283889333015588 2.25673227174927E-07 -2.79728843421978E-08"
+        rpy="0 0 0" />
+      <mass
+        value="0.517428787817437" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LH_KNEE.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LH_KNEE.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LH_KFE"
+    type="revolute">
+    <origin
+      xyz="-0.0014584 -0.25498 0"
+      rpy="-1.7347E-18 0 1.461E-17" />
+    <parent
+      link="LH_SHANK" />
+    <child
+      link="LH_KNEE" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-3.14"
+      upper="3.14"
+      effort="80"
+      velocity="7" />
+  </joint>
+  <link
+    name="LH_FOOT">
+    <inertial>
+      <origin
+        xyz="4.85722573273506E-15 5.5649929109336E-15 -0.299999999999998"
+        rpy="0 0 0" />
+      <mass
+        value="0.0654498469497874" />
+      <inertia
+        ixx="0.1"
+        ixy="0"
+        ixz="0"
+        iyy="0.1"
+        iyz="0"
+        izz="0.1" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LH_FOOT.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://quadruped/meshes/LH_FOOT.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="LH_FOOT"
+    type="fixed">
+    <origin
+      xyz="0.22646 0 0.3"
+      rpy="-1.8041E-16 3.0878E-16 -9.9936E-17" />
+    <parent
+      link="LH_KNEE" />
+    <child
+      link="LH_FOOT" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      <robotNamespace>/quadruped</robotNamespace>
+      <legacyModeNS>true</legacyModeNS>
+    </plugin>
+  </gazebo>
+  
+
+<gazebo reference="LF_FOOT">
+  <sensor name="LF_FOOT_contact_sensor" type="contact">
+    <always_on>true</always_on>
+    <update_rate>120.0</update_rate>
+    <contact>
+      <collision>LF_FOOT_collision</collision>
+    </contact>
+    <plugin name="gazebo_ros_bumper_controller_1" filename="libgazebo_ros_bumper.so">
+      <bumperTopicName>/LF_FOOT_contact_sensor_state</bumperTopicName>
+      <frameName>LF_FOOT</frameName>
+    </plugin>
+  </sensor>
+</gazebo>
+  <gazebo reference="RF_FOOT">
+  <sensor name="RF_FOOT_contact_sensor" type="contact">
+    <always_on>true</always_on>
+    <update_rate>120.0</update_rate>
+    <contact>
+      <collision>RF_FOOT_collision</collision>
+    </contact>
+    <plugin name="gazebo_ros_bumper_controller" filename="libgazebo_ros_bumper.so">
+      <bumperTopicName>/RF_FOOT_contact_sensor_state</bumperTopicName>
+      <frameName>RF_FOOT</frameName>
+    </plugin>
+  </sensor>
+</gazebo>
+
+
+  <transmission name="tran1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="LF_HAA">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor1">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="LF_HFE">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor2">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran3">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="LF_KFE">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor3">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran4">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="LH_HAA">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor4">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran5">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="LH_HFE">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor5">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran6">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="LH_KFE">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor6">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran7">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="RF_HAA">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor7">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="tran8">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="RF_HFE">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor8">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran9">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="RF_KFE">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor9">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran10">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="RH_HAA">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor10">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran11">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="RH_HFE">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor11">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran12">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="RH_KFE">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor12">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+</robot>
